@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "7ceffd01-a60c-40d3-b96b-b36bcae85922",
+		"name": "RestFull-Api",
+		"description": "This RESTful API, developed using pure PHP, provides a robust interface for managing users and posts. The API supports full CRUD (Create, Read, Update, Delete) operations, allowing developers to interact with user and post data seamlessly. It is designed to be simple, efficient, and secure, making it ideal for applications that require user-generated content management.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37459474"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Rgister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Diyari_Ako_Aziz\",\r\n    \"address\": \"Iraq,Arbil\",\r\n    \"age\": 22,\r\n    \"email\": \"diyari.ako1@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "This endpoint allows new users to create an account by providing the necessary details. It validates the input data to ensure the integrity and security of the registration process.\n\n### Validation Rules\n\n- **Age Requirement:** Users must be at least 18 years old to register.\n    \n- **Email Format:** The email address must be in a valid format (e.g., `example@domain.com`).\n    \n- **Password Security:** The password must be a minimum of 8 characters.\n    \n- **Username Uniqueness:** The username must be unique and cannot be duplicated in the system.\n    \n- **Email Uniqueness:** The email address must be unique and cannot be duplicated in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Diyari_Ako_Aziz\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "This endpoint allows users to log in to their account using their username and password. Upon successful authentication, the API returns an access token and a refresh token, which are used to authorize subsequent requests."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						},
+						"description": "This endpoint allows users to log out of their account by invalidating the refresh token. Once logged out, the user’s refresh tokens will no longer be valid."
+					},
+					"response": []
+				},
+				{
+					"name": "Rfresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users",
+								"refresh"
+							]
+						},
+						"description": "This endpoint allows users to obtain a new access token and refresh token when their current access token is about to expire. The refresh token is used to authenticate this request, ensuring that the user can continue to make authorized API calls without needing to log in again."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This endpoint retrieves a list of all registered users, including their usernames, email addresses, and ages. This allows administrators or other authorized users to view the complete user database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						},
+						"description": "This endpoint retrieves detailed information about a specific user identified by their unique user ID. The information includes the user's username, email address, and age."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Diyari_ako_aziz_Hussain\",\r\n    \"address\": \"Erbil\",\r\n    \"age\": 18,\r\n    \"email\": \"diyari.ako2@gmail.com\",\r\n    \"password\": \"87654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This endpoint allows for updating the information of the currently authenticated user. The same validation rules apply as when registering the user, but not all parameters are required."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This endpoint allows for the deletion of the currently authenticated user.Once the user is deleted, their account and all associated data will be permanently removed. Additionally, the access token and refresh token will no longer be valid."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Creat Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Perseverance\",\r\n    \"content\": \"Success often comes to those who simply refuse to give up.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts"
+							]
+						},
+						"description": "This endpoint allows the authenticated user to create a new post. Both the title and content of the post are required fields. The post will be associated with the currently authenticated user, and the user’s ID is determined automatically from the access token provided in the request."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Post",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Perseverance\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "This endpoint retrieves all posts from all users. You can filter posts by title and use pagination to control the number of results returned. The title parameter allows you to search for posts with a specific title, while the `page` and `limit` parameters manage the pagination of results."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post By User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts/1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts",
+								"1",
+								"users"
+							]
+						},
+						"description": "This endpoint retrieves all posts made by a specific user identified by their user ID. The `user_id` parameter in the URL specifies which user's posts to retrieve."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						},
+						"description": "This endpoint retrieves a specific post identified by its unique post ID. The post will be fetched only if it belongs to the currently authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Resilience\",\r\n    \"content\": \"Strength doesn't come from what you can do; it comes from overcoming the things you once thought you couldn't.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						},
+						"description": "This endpoint allows the currently authenticated user to update a specific post identified by its unique post ID. At least one of the title or content fields must be provided for the update.Only the user who created the post can update it."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer Access-Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						},
+						"description": "This endpoint allows the currently authenticated user to delete a specific post identified by its unique post ID. Only the user who created the post can delete it."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
